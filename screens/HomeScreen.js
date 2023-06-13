@@ -1,8 +1,9 @@
 import { AntDesign, Ionicons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import DatePicker from '@sabroso/react-native-date-range-picker';
 import React, { useEffect, useState } from 'react';
 import {
+  Alert,
   Image,
   Pressable,
   ScrollView,
@@ -22,12 +23,33 @@ import Header from '../components/Header';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
+  const route = useRoute();
   const [selectedDates, setselectedDates] = useState();
   const [isModalVisible, setModalVisible] = useState(false);
   const [rooms, setRooms] = useState(0);
   const [adults, setAdults] = useState(0);
   const [children, setChildren] = useState(0);
 
+  const searchPress = (place) => {
+    if ((!route && !place) || !selectedDates) {
+      Alert.alert('Invalid Details', 'Please fill all the details', [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        { text: 'OK', onPress: () => console.log('OK Pressed') },
+      ]);
+    } else if (place && selectedDates) {
+      navigation.navigate('Places', {
+        place: place,
+        selectedDates: selectedDates,
+        rooms: rooms,
+        adults: adults,
+        children: children,
+      });
+    }
+  };
   useEffect(() => {
     navigation.setOptions({
       headerShown: true,
@@ -66,7 +88,12 @@ const HomeScreen = () => {
             <Ionicons name="search-outline" size={24} color="black" />
             <TextInput
               style={styles.home__group_input}
-              placeholder="Enter your destination"
+              placeholderTextColor="black"
+              placeholder={
+                route?.params
+                  ? route.params.destination
+                  : 'Enter your destination'
+              }
             />
           </Pressable>
           {/* --------- DATE ------------ */}
@@ -95,7 +122,9 @@ const HomeScreen = () => {
             />
           </Pressable>
           {/* --------- SEARCH ------------ */}
-          <Pressable style={[styles.home__group, styles.home__group_search]}>
+          <Pressable
+            style={[styles.home__group, styles.home__group_search]}
+            onPress={() => searchPress(route?.params?.destination)}>
             <Text style={styles.home__group_searchtext}>Search</Text>
           </Pressable>
         </View>
@@ -243,7 +272,7 @@ const styles = StyleSheet.create({
   home__group_search: {
     backgroundColor: '#2a52be',
     justifyContent: 'center',
-    paddingVertical: 20,
+    paddingVertical: 15,
     borderColor: '#2a52be',
   },
   home__group_input: {

@@ -8,7 +8,8 @@ import BookingScreen from './screens/BookingScreen';
 import HomeScreen from './screens/HomeScreen';
 import SavedScreen from './screens/SavedScreen';
 import ProfileScreen from './screens/ProfileScreen';
-import SearchScreen from './screens/SearchScreen';
+import SearchScreen from './screens/destinations/SearchScreen';
+import PlacesScreen from './screens/PlacesScreen';
 
 const StackNavigator = () => {
   const Tab = createBottomTabNavigator();
@@ -93,6 +94,13 @@ const StackNavigator = () => {
           name="Search"
           component={SearchScreen}
           options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Places"
+          component={PlacesScreen}
+          options={{
+            headerShown: false,
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>
