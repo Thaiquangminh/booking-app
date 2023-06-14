@@ -11,7 +11,6 @@ import { useNavigation } from '@react-navigation/native';
 import useDebounceCustom from '../../ultis/useDebounce';
 
 const SearchResults = ({ data, searchValue }) => {
-  console.log(searchValue);
   const navigation = useNavigation();
   const [newData, setNewData] = useState([]);
   const findSearchData = () => {

@@ -12,7 +12,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 const Header = () => {
   return (
     <View style={styles.header}>
-      <Pressable style={styles.header__group}>
+      <Pressable style={[styles.header__group, styles.header__group_active]}>
         <Ionicons name="bed-outline" size={24} color="white" />
         <Text style={styles.header__group_text}>Stays</Text>
       </Pressable>
@@ -40,13 +40,16 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     backgroundColor: '#003580',
     height: 70,
+    paddingHorizontal: 5,
   },
   header__group: {
     flexDirection: 'row',
     alignItems: 'center',
-    margin: 12,
-    padding: 8,
-    borderRadius: 25,
+    margin: 14,
+    padding: 6,
+    borderRadius: 20,
+  },
+  header__group_active: {
     borderWidth: 2,
     borderColor: '#a1a6aa',
   },

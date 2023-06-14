@@ -78,105 +78,108 @@ const HomeScreen = () => {
   }, []);
   return (
     <>
-      <View>
-        <Header />
-        <View style={styles.home}>
-          {/* --------- DESTINATION------------ */}
-          <Pressable
-            style={styles.home__group}
-            onPress={() => navigation.navigate('Search')}>
-            <Ionicons name="search-outline" size={24} color="black" />
-            <TextInput
-              style={styles.home__group_input}
-              placeholderTextColor="black"
-              placeholder={
-                route?.params
-                  ? route.params.destination
-                  : 'Enter your destination'
-              }
-            />
-          </Pressable>
-          {/* --------- DATE ------------ */}
-          <Pressable style={styles.home__group}>
-            <AntDesign name="calendar" size={24} color="black" />
-            <DatePicker
-              style={styles.home__group_datepicker}
-              customStyles={styles.home__group_customDatepicker} // optional
-              allowFontScaling={false} // optional
-              placeholder={'Select your date'}
-              onConfirm={(startDate, endDate) =>
-                setselectedDates(startDate, endDate)
-              }
-              mode={'range'}
-            />
-          </Pressable>
-          {/* --------- ROOM ------------ */}
-          <Pressable
-            style={styles.home__group}
-            onPress={() => setModalVisible(true)}>
-            <Ionicons name="person-outline" size={24} color="black" />
-            <TextInput
-              readOnly={true}
-              placeholderTextColor="red"
-              placeholder={`${rooms} room - ${adults} adults - ${children} children`}
-            />
-          </Pressable>
-          {/* --------- SEARCH ------------ */}
-          <Pressable
-            style={[styles.home__group, styles.home__group_search]}
-            onPress={() => searchPress(route?.params?.destination)}>
-            <Text style={styles.home__group_searchtext}>Search</Text>
-          </Pressable>
-        </View>
+      <ScrollView>
+        <View>
+          <Header />
+          <View style={styles.home}>
+            {/* --------- DESTINATION------------ */}
+            <Pressable
+              style={styles.home__group}
+              onPress={() => navigation.navigate('Search')}>
+              <Ionicons name="search-outline" size={24} color="black" />
+              <TextInput
+                style={styles.home__group_input}
+                placeholderTextColor="black"
+                placeholder={
+                  route?.params
+                    ? route.params.destination
+                    : 'Enter your destination'
+                }
+              />
+            </Pressable>
+            {/* --------- DATE ------------ */}
+            <Pressable style={styles.home__group}>
+              <AntDesign name="calendar" size={24} color="black" />
+              <DatePicker
+                style={styles.home__group_datepicker}
+                customStyles={styles.home__group_customDatepicker} // optional
+                allowFontScaling={false} // optional
+                placeholder={'Select your date'}
+                onConfirm={(startDate, endDate) =>
+                  setselectedDates(startDate, endDate)
+                }
+                mode={'range'}
+              />
+            </Pressable>
+            {/* --------- ROOM ------------ */}
+            <Pressable
+              style={styles.home__group}
+              onPress={() => setModalVisible(true)}>
+              <Ionicons name="person-outline" size={24} color="black" />
+              <TextInput
+                readOnly={true}
+                placeholderTextColor="red"
+                placeholder={`${rooms} room - ${adults} adults - ${children} children`}
+              />
+            </Pressable>
+            {/* --------- SEARCH ------------ */}
+            <Pressable
+              style={[styles.home__group, styles.home__group_search]}
+              onPress={() => searchPress(route?.params?.destination)}>
+              <Text style={styles.home__group_searchtext}>Search</Text>
+            </Pressable>
+          </View>
 
-        {/* -------------- ADVERTISING -------------------- */}
-        <Text style={styles.title}>Travel More spend less</Text>
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          style={{ marginHorizontal: 20 }}>
-          <Pressable style={styles.home__advertising}>
-            <Text style={styles.home__advertising_title}>Genius</Text>
-            <Text style={styles.home__advertising_content}>
-              You are ate genius level one in our loyalty program
-            </Text>
-          </Pressable>
+          {/* -------------- ADVERTISING -------------------- */}
+          <Text style={styles.title}>Travel More spend less</Text>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={{ marginHorizontal: 20 }}>
+            <Pressable style={styles.home__advertising}>
+              <Text style={styles.home__advertising_title}>Genius</Text>
+              <Text style={styles.home__advertising_content}>
+                You are ate genius level one in our loyalty program
+              </Text>
+            </Pressable>
 
-          <Pressable style={styles.home__advertising}>
-            <Text style={styles.home__advertising_title}>15% Discounts</Text>
-            <Text style={styles.home__advertising_content}>
-              Complete 5 stays to unlock level 2
-            </Text>
-          </Pressable>
+            <Pressable style={styles.home__advertising}>
+              <Text style={styles.home__advertising_title}>15% Discounts</Text>
+              <Text style={styles.home__advertising_content}>
+                Complete 5 stays to unlock level 2
+              </Text>
+            </Pressable>
 
-          <Pressable style={styles.home__advertising}>
-            <Text style={styles.home__advertising_title}>10% Discounts</Text>
-            <Text style={styles.home__advertising_content}>
-              Enjoy Discounts at participating at properties worldwide
-            </Text>
-          </Pressable>
-        </ScrollView>
-        <Pressable
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <Image
+            <Pressable style={styles.home__advertising}>
+              <Text style={styles.home__advertising_title}>10% Discounts</Text>
+              <Text style={styles.home__advertising_content}>
+                Enjoy Discounts at participating at properties worldwide
+              </Text>
+            </Pressable>
+          </ScrollView>
+          <Pressable
             style={{
-              width: 200,
-              height: 50,
-              resizeMode: 'cover',
-              marginTop: 20,
-            }}
-            source={{
-              uri: 'https://assets.stickpng.com/thumbs/5a32a821cb9a85480a628f8f.png',
-            }}
-          />
-        </Pressable>
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Image
+              style={{
+                width: 200,
+                height: 50,
+                resizeMode: 'cover',
+                marginTop: 20,
+              }}
+              source={{
+                uri: 'https://assets.stickpng.com/thumbs/5a32a821cb9a85480a628f8f.png',
+              }}
+            />
+          </Pressable>
 
-        {/* --------------------- END ADVERTISING ---------------- */}
-      </View>
+          {/* --------------------- END ADVERTISING ---------------- */}
+        </View>
+      </ScrollView>
+
       <BottomModal
         onTouchOutside={() => setModalVisible(false)}
         swipeDirection={['up', 'down']}

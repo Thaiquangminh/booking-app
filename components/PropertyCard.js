@@ -9,12 +9,20 @@ import {
 import React from 'react';
 import { MaterialIcons, FontAwesome } from '@expo/vector-icons';
 import shortenText from '../ultis/shortenText';
+import { useNavigation } from '@react-navigation/native';
 
 const PropertyCard = ({ property, adults, rooms }) => {
+  const navigation = useNavigation();
   const { width, height } = Dimensions.get('window');
   return (
     <View style={{ backgroundColor: '#d3d3d3' }}>
-      <Pressable style={styles.detail}>
+      <Pressable
+        style={styles.detail}
+        onPress={() =>
+          navigation.navigate('PlaceDetail', {
+            property: property,
+          })
+        }>
         {/* ----------- IMG ----------- */}
         <View>
           <Image
@@ -25,69 +33,39 @@ const PropertyCard = ({ property, adults, rooms }) => {
 
         {/* ----------- HOTEL DETAILS ----------- */}
         <View style={{ paddingHorizontal: 10, marginTop: 1 }}>
-          <View style={styles.detail__content}>
-            <Text style={styles.detail__content_title}>{property.name}</Text>
+          <View style={styles.detail__title}>
+            <Text style={styles.detail__title_text}>{property.name}</Text>
             <MaterialIcons name="favorite-outline" size={24} color="red" />
           </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              marginTop: 5,
-            }}>
+          <View style={styles.detail__rating}>
             <FontAwesome name="star" size={18} color="#fdd128" />
-            <Text style={{ marginLeft: 3 }}>{property.rating}</Text>
-            <View
-              style={{
-                backgroundColor: '#6cb4ee',
-                padding: 4,
-                textAlign: 'center',
-                borderRadius: 4,
-                marginLeft: 10,
-              }}>
-              <Text style={{ color: '#808080', fontSize: 15 }}>
-                Genius Level
-              </Text>
+            <Text style={styles.detail__rating_text}>{property.rating}</Text>
+            <View style={styles.detail__rating_wraptype}>
+              <Text style={styles.detail__rating_type}>Genius Level</Text>
             </View>
           </View>
           <View>
-            <Text
-              style={{
-                marginTop: 6,
-                maxWidth: 220,
-                color: 'gray',
-              }}>
+            <Text style={styles.detail__address}>
               {shortenText(property.address, 60)}
             </Text>
           </View>
           <Text style={{ marginTop: 5 }}>
             Price for 1 night with {adults} adults
           </Text>
-          <View style={{ flexDirection: 'row', marginTop: 5 }}>
+          <View style={styles.detail__newprice}>
             <Text style={{ fontSize: 24 }}>{property.newPrice * adults}</Text>
 
-            <Text
-              style={{
-                color: 'red',
-                textDecorationLine: 'line-through',
-                marginLeft: 3,
-              }}>
+            <Text style={styles.detail__oldprice}>
               {property.oldPrice * adults}
             </Text>
           </View>
-          <View style={{ marginTop: 8 }}>
-            <Text style={{ color: 'gray' }}>Hotel Room : 1 bed</Text>
+          <View style={styles.detail__pricetitle}>
+            <Text style={styles.detail__pricetitle_text}>
+              Hotel Room : 1 bed
+            </Text>
           </View>
-          <View
-            style={{
-              backgroundColor: '#6082b6',
-              paddingVertical: 4,
-              width: 130,
-              borderRadius: 4,
-              textAlign: 'center',
-              marginTop: 10,
-            }}>
-            <Text style={{ textAlign: 'center' }}>Limited Time Deal</Text>
+          <View style={styles.detail__deal}>
+            <Text style={styles.detail__deal_text}>Limited Time Deal</Text>
           </View>
         </View>
       </Pressable>
@@ -105,13 +83,73 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: 'white',
   },
-  detail__content: {
+  detail__title: {
     flexDirection: 'row',
     alignItems: 'center',
   },
-  detail__content_title: {
+  detail__title_text: {
     minWidth: 180,
     minHeight: 20,
     fontSize: 17,
+  },
+  // -------- Rating ----------
+  detail__rating: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 5,
+  },
+  detail__rating_text: {
+    marginLeft: 3,
+  },
+  detail__rating_wraptype: {
+    backgroundColor: '#6cb4ee',
+    padding: 4,
+    textAlign: 'center',
+    borderRadius: 4,
+    marginLeft: 10,
+  },
+  detail__rating_type: {
+    color: '#808080',
+    fontSize: 15,
+  },
+
+  // -------- Address ----------
+  detail__address: {
+    marginTop: 6,
+    maxWidth: 220,
+    color: 'gray',
+  },
+
+  // -------- Price ----------
+  detail__newprice: {
+    flexDirection: 'row',
+    marginTop: 5,
+  },
+
+  detail__oldprice: {
+    color: 'red',
+    textDecorationLine: 'line-through',
+    marginLeft: 3,
+  },
+
+  detail__pricetitle: {
+    marginTop: 8,
+  },
+
+  detail__pricetitle_text: {
+    color: 'gray',
+  },
+
+  detail__deal: {
+    backgroundColor: '#6082b6',
+    paddingVertical: 4,
+    width: 130,
+    borderRadius: 4,
+    textAlign: 'center',
+    marginTop: 10,
+  },
+
+  detail__deal_text: {
+    textAlign: 'center',
   },
 });
