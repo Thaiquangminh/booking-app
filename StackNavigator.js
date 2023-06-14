@@ -10,6 +10,8 @@ import SavedScreen from './screens/SavedScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import SearchScreen from './screens/destinations/SearchScreen';
 import PlacesScreen from './screens/PlacesScreen';
+import MapScreen from './screens/MapScreen';
+import PlaceDetailScreen from './screens/PlaceDetailScreen';
 
 const StackNavigator = () => {
   const Tab = createBottomTabNavigator();
@@ -98,6 +100,20 @@ const StackNavigator = () => {
         <Stack.Screen
           name="Places"
           component={PlacesScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Map"
+          component={MapScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="PlaceDetail"
+          component={PlaceDetailScreen}
           options={{
             headerShown: false,
           }}
