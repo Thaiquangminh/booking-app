@@ -32,7 +32,6 @@ const PlacesScreen = () => {
   const [newData, setNewData] = useState([]);
   const [allHotelByPlace, setAllHotelByPlace] = useState([]);
   const searchValue = route?.params.place;
-  console.log(newData);
 
   const data = [
     {
@@ -683,7 +682,9 @@ const PlacesScreen = () => {
                 property={property}
                 key={property.id}
                 rooms={route.params?.rooms}
-                adults={route.params.adults}
+                adults={route.params?.adults}
+                children={route.params?.children}
+                selectedDates={route.params?.selectedDates}
               />
             ))
           )}

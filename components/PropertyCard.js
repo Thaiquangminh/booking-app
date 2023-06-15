@@ -11,7 +11,7 @@ import { MaterialIcons, FontAwesome } from '@expo/vector-icons';
 import shortenText from '../ultis/shortenText';
 import { useNavigation } from '@react-navigation/native';
 
-const PropertyCard = ({ property, adults, rooms }) => {
+const PropertyCard = ({ property, adults, rooms, selectedDates, children }) => {
   const navigation = useNavigation();
   const { width, height } = Dimensions.get('window');
   return (
@@ -21,6 +21,10 @@ const PropertyCard = ({ property, adults, rooms }) => {
         onPress={() =>
           navigation.navigate('PlaceDetail', {
             property: property,
+            adults: adults,
+            rooms: rooms,
+            children: children,
+            selectedDates: selectedDates,
           })
         }>
         {/* ----------- IMG ----------- */}

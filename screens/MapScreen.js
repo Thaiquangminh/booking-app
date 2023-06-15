@@ -7,13 +7,9 @@ const MapScreen = () => {
   const mapView = useRef(null);
   const route = useRoute();
   const hotels = route.params?.hotels;
-  console.log('hotels', hotels);
   return (
     <View>
       <MapView
-        // loadingEnabled={true}
-        // loadingIndicatorColor="#666666"
-        // loadingBackgroundColor="#eeeeee"
         moveOnMarkerPress={false}
         showsUserLocation={true}
         showsCompass={true}
