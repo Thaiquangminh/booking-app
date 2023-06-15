@@ -121,14 +121,6 @@ const PlacesScreen = () => {
               payment: 'Pay in advance',
               bed: '1 queen bed',
             },
-            {
-              id: '205',
-              name: 'Two bedroom with balcony',
-              size: 490,
-              refundable: 'refundable',
-              payment: 'Pay at the property',
-              bed: '1 queen bed',
-            },
           ],
         },
         {
@@ -214,6 +206,14 @@ const PlacesScreen = () => {
             {
               id: '205',
               name: 'Deluxe king Room',
+              size: 490,
+              refundable: 'refundable',
+              payment: 'Pay at the property',
+              bed: '1 queen bed',
+            },
+            {
+              id: '206',
+              name: 'Two bedroom with balcony',
               size: 490,
               refundable: 'refundable',
               payment: 'Pay at the property',
@@ -403,12 +403,14 @@ const PlacesScreen = () => {
       id: '2',
       place: 'Hyderabad',
       placeImage:
-        'https://images.pexels.com/photos/9373357/pexels-photo-9373357.jpeg?auto=compress&cs=tinysrgb&w=800',
+        'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80',
       shortDescription: 'City in Telangana, India',
       properties: [
         {
           id: '20',
-          name: 'FabExpress Airport Stay Inn',
+          name: 'FabExpress Stay',
+          image:
+            'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80',
           rating: 3.5,
           address:
             'CFC-4/C, Road No-2 Hardware Park, Beside TCS, Tukkuguda, 501351 Hyderabad, India',
@@ -495,8 +497,10 @@ const PlacesScreen = () => {
         },
         {
           id: '22',
-          name: 'Olive Service Apartments',
+          name: 'Olive Apartments',
           rating: 4.5,
+          image:
+            'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80',
           address:
             'Plot 73, Shilpi Valley, Gafoor Nagar, Madhapur, Opp Hitech City Mindspace, Hyderabad',
           oldPrice: 5200,
@@ -593,7 +597,6 @@ const PlacesScreen = () => {
       name: 'High to Low',
     },
   ];
-
   const handleShowPropetiesByPlace = () => {
     const hotelByPlace = data.filter((item) => item.place === searchValue);
     setNewData(hotelByPlace);
@@ -604,13 +607,19 @@ const PlacesScreen = () => {
     setModalVisible(false);
     switch (filterValue) {
       case 'Low to High':
-        setNewData(
-          newData?.map((item) =>
-            item.properties?.sort((a, b) => {
-              return a.newPrice - b.newPrice;
-            })
-          )
+        // setNewData(
+        //   newData?.map((item) =>
+        //     item.properties?.sort((a, b) => {
+        //       return a.newPrice - b.newPrice;
+        //     })
+        //   )
+        // );
+        const data = newData.map((item) =>
+          item.properties.sort((a, b) => {
+            return a.newPrice - b.newPrice;
+          })
         );
+        setNewData(data);
         break;
       case 'High to Low':
         setNewData(

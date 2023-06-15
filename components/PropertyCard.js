@@ -65,7 +65,7 @@ const PropertyCard = ({ property, adults, rooms, selectedDates, children }) => {
           </View>
           <View style={styles.detail__pricetitle}>
             <Text style={styles.detail__pricetitle_text}>
-              Hotel Room : 1 bed
+              Hotel Room : {property.rooms.length} rooms
             </Text>
           </View>
           <View style={styles.detail__deal}>

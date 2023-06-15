@@ -160,9 +160,15 @@ const PlaceDetailScreen = () => {
             {route.params?.children} children
           </Text>
         </View>
-
         {/* ------------- DIVIDER ----------- */}
-        <Text style={styles.detail__btn_text} />
+        <Text
+          style={{
+            borderColor: '#E0E0E0',
+            height: 1,
+            borderWidth: 1,
+            marginTop: 15,
+          }}
+        />
         {/* ------------- DIVIDER ----------- */}
 
         <View style={styles.detail__facilities}>
@@ -180,7 +186,13 @@ const PlaceDetailScreen = () => {
           </View>
         </View>
       </ScrollView>
-      <Pressable style={styles.detail__btn}>
+      <Pressable
+        style={styles.detail__btn}
+        onPress={() =>
+          navigation.navigate('Room', {
+            property: property,
+          })
+        }>
         <Text style={styles.detail__btn_text}>Select Availability</Text>
       </Pressable>
     </View>
@@ -260,7 +272,7 @@ const styles = StyleSheet.create({
   // ------------ CHECK IN CHECKOUT --------------
   detail__check: {
     flexDirection: 'row',
-    gap: 60,
+    gap: 80,
     marginHorizontal: 10,
     marginVertical: 8,
   },
@@ -302,7 +314,7 @@ const styles = StyleSheet.create({
   detail__btn: {
     backgroundColor: '#6CB4EE',
     marginTop: 30,
-    paddingVertical: 25,
+    paddingVertical: 20,
   },
   detail__btn_text: {
     textAlign: 'center',
