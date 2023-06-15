@@ -26,10 +26,9 @@ const HomeScreen = () => {
   const route = useRoute();
   const [selectedDates, setselectedDates] = useState();
   const [isModalVisible, setModalVisible] = useState(false);
-  const [rooms, setRooms] = useState(0);
-  const [adults, setAdults] = useState(0);
+  const [rooms, setRooms] = useState(1);
+  const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
-
   const searchPress = (place) => {
     if ((!route && !place) || !selectedDates) {
       Alert.alert('Invalid Details', 'Please fill all the details', [
