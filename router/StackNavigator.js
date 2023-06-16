@@ -4,15 +4,16 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import BookingScreen from './screens/booking/BookingScreen';
-import HomeScreen from './screens/home/HomeScreen';
-import PlaceDetailScreen from './screens/popular-places/PlaceDetailScreen';
-import PlacesScreen from './screens/popular-places/PlacesScreen';
-import MapScreen from './screens/popular-places/MapScreen';
-import SearchScreen from './screens/home/SearchScreen';
-import ProfileScreen from './screens/profile/ProfileScreen';
-import RoomScreen from './screens/room/RoomScreen';
-import SavedScreen from './screens/saved/SavedScreen';
+import BookingScreen from '../screens/booking/BookingScreen';
+import HomeScreen from '../screens/home/HomeScreen';
+import PlaceDetailScreen from '../screens/popular-places/PlaceDetailScreen';
+import PlacesScreen from '../screens/popular-places/PlacesScreen';
+import MapScreen from '../screens/popular-places/MapScreen';
+import SearchScreen from '../screens/home/SearchScreen';
+import ProfileScreen from '../screens/profile/ProfileScreen';
+import RoomScreen from '../screens/room/RoomScreen';
+import SavedScreen from '../screens/saved/SavedScreen';
+import ContactScreen from '../screens/contact/ContactScreen';
 
 const StackNavigator = () => {
   const Tab = createBottomTabNavigator();
@@ -122,6 +123,13 @@ const StackNavigator = () => {
         <Stack.Screen
           name="Room"
           component={RoomScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Contact"
+          component={ContactScreen}
           options={{
             headerShown: false,
           }}

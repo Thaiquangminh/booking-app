@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { ModalPortal } from 'react-native-modals';
-import StackNavigator from './StackNavigator';
+import StackNavigator from './router/StackNavigator';
 
 export default function App() {
   return (

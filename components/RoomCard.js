@@ -3,8 +3,18 @@ import { useRoute } from '@react-navigation/native';
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
-const RoomCard = ({ room, services, selected, handleSelect }) => {
+const RoomCard = ({
+  room,
+  services,
+  selected,
+  handleSelect,
+  handleSetSelect,
+}) => {
   const route = useRoute();
+  const handleRemoveSelected = () => {
+    selected.some((item) => item === room.name) &&
+      handleSetSelect(selected.filter((item) => item !== room.name));
+  };
   return (
     <Pressable style={{ margin: 8, backgroundColor: 'white', padding: 10 }}>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -16,12 +26,9 @@ const RoomCard = ({ room, services, selected, handleSelect }) => {
         <Text style={styles.room__cancel}>Free cancellation Available</Text>
       </View>
       <View style={styles.room__price}>
-        <Text style={styles.room__price_new}>
-          {route.params.property.newPrice}
-        </Text>
-        <Text style={styles.room__price_old}>
-          {route.params.property.oldPrice}
-        </Text>
+        <Text style={styles.room__price_new}>{room.newPrice}</Text>
+        <Text style={styles.room__price_old}>{room.oldPrice}</Text>
+        <Text style={styles.room__price_cur}>($/h)</Text>
       </View>
       <View style={styles.detail__facilities}>
         <Text style={styles.detail___facilities_title}>
@@ -46,7 +53,7 @@ const RoomCard = ({ room, services, selected, handleSelect }) => {
             marginTop: 10,
             flexDirection: 'row',
           }}
-          onPress={() => handleSelect([])}>
+          onPress={handleRemoveSelected}>
           <Text
             style={{
               textAlign: 'center',
@@ -69,7 +76,7 @@ const RoomCard = ({ room, services, selected, handleSelect }) => {
             borderRadius: 10,
             marginTop: 10,
           }}
-          onPress={() => handleSelect([room.name])}>
+          onPress={() => handleSelect(room.name)}>
           <Text
             style={{
               textAlign: 'center',
@@ -119,6 +126,11 @@ const styles = StyleSheet.create({
     textDecorationLine: 'line-through',
     textDecorationColor: 'red',
     marginLeft: 3,
+  },
+
+  room__price_cur: {
+    marginLeft: 5,
+    fontSize: 24,
   },
 
   // ------------ FACILITIES --------------

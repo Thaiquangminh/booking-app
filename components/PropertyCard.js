@@ -57,11 +57,14 @@ const PropertyCard = ({ property, adults, rooms, selectedDates, children }) => {
             Price for 1 night with {adults} adults
           </Text>
           <View style={styles.detail__newprice}>
-            <Text style={{ fontSize: 24 }}>{property.newPrice * adults}</Text>
+            <Text style={{ fontSize: 24 }}>
+              {property.avgNewPrice * adults}
+            </Text>
 
             <Text style={styles.detail__oldprice}>
-              {property.oldPrice * adults}
+              {property.avgOldPrice * adults}
             </Text>
+            <Text style={styles.detail__price_cur}>($/h)</Text>
           </View>
           <View style={styles.detail__pricetitle}>
             <Text style={styles.detail__pricetitle_text}>
@@ -134,6 +137,11 @@ const styles = StyleSheet.create({
     color: 'red',
     textDecorationLine: 'line-through',
     marginLeft: 3,
+  },
+  detail__price_cur: {
+    marginTop: 3,
+    marginLeft: 5,
+    fontSize: 18,
   },
 
   detail__pricetitle: {
