@@ -109,19 +109,20 @@ const PlaceDetailScreen = () => {
 
         <View style={{ marginTop: 7, marginHorizontal: 10 }}>
           <Text style={styles.detail__check_title}>
-            Price for 1 night with {route.params?.adults} adults
+            Price for 1 night with {route.params?.adults} adults (average price)
           </Text>
           <View style={styles.detail__newprice}>
             <Text style={styles.detail__oldprice}>
-              {property.oldPrice * route.params?.adults}
+              {property.avgOldPrice * route.params?.adults}
             </Text>
             <Text style={{ fontSize: 22 }}>
-              {property.newPrice * route.params?.adults}
+              {property.avgNewPrice * route.params?.adults}
             </Text>
+            <Text style={styles.detail__price_cur}>($/h)</Text>
           </View>
           <View style={[styles.detail__content_wrapsustain, { width: 80 }]}>
             <Text style={styles.detail__content_textsustain}>
-              {calculateDiscount(property.oldPrice, property.newPrice) +
+              {calculateDiscount(property.avgOldPrice, property.avgNewPrice) +
                 '% Off'}
             </Text>
           </View>
@@ -261,11 +262,17 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
 
+  detail__price_cur: {
+    marginTop: 2,
+    marginLeft: 2,
+    fontSize: 17,
+  },
+
   detail__oldprice: {
     color: 'red',
     textDecorationLine: 'line-through',
     fontSize: 22,
-    marginRight: 10,
+    marginRight: 5,
   },
 
   // ------------ CHECK IN CHECKOUT --------------

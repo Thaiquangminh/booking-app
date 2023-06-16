@@ -14,8 +14,8 @@ export const data = [
         rating: 3.6,
         address:
           '346, Hennur Main Road, Post, Kalyan Nagar, 560043 Bangalore, India ',
-        oldPrice: 4600,
-        newPrice: 3312,
+        avgOldPrice: 23,
+        avgNewPrice: 20,
         latitude: '13.0359',
         longitude: '77.6431',
         photos: [
@@ -77,6 +77,8 @@ export const data = [
             refundable: 'refundable',
             payment: 'Pay at the property',
             bed: '1 queen bed',
+            oldPrice: 20,
+            newPrice: 15,
           },
           {
             id: '203',
@@ -85,6 +87,8 @@ export const data = [
             refundable: 'non refundable',
             payment: 'Pay in advance',
             bed: '1 queen bed',
+            oldPrice: 25,
+            newPrice: 20,
           },
         ],
       },
@@ -95,8 +99,8 @@ export const data = [
         name: 'Sapphire Boutique',
         rating: 4,
         address: 'D8 Giảng Võ, Ba Đình, Hà Nội, Việt Nam',
-        oldPrice: 4201,
-        newPrice: 3327,
+        avgOldPrice: 30,
+        avgNewPrice: 25,
         latitude: '12.9784',
         longitude: '77.6408',
         photos: [
@@ -159,22 +163,28 @@ export const data = [
             refundable: 'refundable',
             payment: 'Pay at the property',
             bed: '1 queen bed',
+            oldPrice: 10,
+            newPrice: 8,
           },
           {
             id: '203',
-            name: 'Deluxe king Room',
+            name: 'Deluxe King Room (VIP)',
             size: 440,
             refundable: 'non refundable',
             payment: 'Pay in advance',
             bed: '1 queen bed',
+            oldPrice: 25,
+            newPrice: 20,
           },
           {
             id: '205',
-            name: 'Deluxe king Room',
+            name: 'Deluxe King Room',
             size: 490,
             refundable: 'refundable',
             payment: 'Pay at the property',
             bed: '1 queen bed',
+            oldPrice: 40,
+            newPrice: 30,
           },
           {
             id: '206',
@@ -183,6 +193,8 @@ export const data = [
             refundable: 'refundable',
             payment: 'Pay at the property',
             bed: '1 queen bed',
+            oldPrice: 40,
+            newPrice: 30,
           },
         ],
       },
@@ -192,8 +204,8 @@ export const data = [
         rating: 4.2,
         address:
           "Down Town Park, Sadahalli Gate, Kempegowda Int'l Airport Rd, 562157 Bangalore, India",
-        oldPrice: 3800,
-        newPrice: 3078,
+        avgOldPrice: 38,
+        avgNewPrice: 30,
         latitude: '13.1989',
         longitude: '77.7068',
         image:
@@ -253,6 +265,8 @@ export const data = [
             refundable: 'refundable',
             payment: 'Pay at the property',
             bed: '1 queen bed',
+            oldPrice: 45,
+            newPrice: 30,
           },
           {
             id: '203',
@@ -261,6 +275,8 @@ export const data = [
             refundable: 'non refundable',
             payment: 'Pay in advance',
             bed: '1 queen bed',
+            oldPrice: 50,
+            newPrice: 40,
           },
           {
             id: '205',
@@ -269,19 +285,21 @@ export const data = [
             refundable: 'refundable',
             payment: 'Pay at the property',
             bed: '1 queen bed',
+            oldPrice: 80,
+            newPrice: 40,
           },
         ],
       },
       {
         id: '20',
-        name: 'FabHotel Zeke',
+        name: 'Roses Hotel',
         image:
           'https://cf.bstatic.com/xdata/images/hotel/max1280x900/433845616.jpg?k=87bc315f35830189d9a1c935c3e167e648543c27f39ee4cafc5cf73ee24393b9&o=&hp=1',
         rating: 3.6,
         address:
           '346, Hennur Main Road, Post, Kalyan Nagar, 560043 Bangalore, India ',
-        oldPrice: 4600,
-        newPrice: 3312,
+        avgOldPrice: 40,
+        avgNewPrice: 38,
         latitude: '13.0359',
         longitude: '77.6431',
         photos: [
@@ -379,8 +397,8 @@ export const data = [
         rating: 3.5,
         address:
           'CFC-4/C, Road No-2 Hardware Park, Beside TCS, Tukkuguda, 501351 Hyderabad, India',
-        oldPrice: 4332,
-        newPrice: 3200,
+        avgOldPrice: 4332,
+        avgNewPrice: 3200,
         photos: [
           {
             id: '140',
@@ -468,8 +486,8 @@ export const data = [
           'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80',
         address:
           'Plot 73, Shilpi Valley, Gafoor Nagar, Madhapur, Opp Hitech City Mindspace, Hyderabad',
-        oldPrice: 5200,
-        newPrice: 4100,
+        avgOldPrice: 52,
+        avgNewPrice: 41,
         photos: [
           {
             id: '160',

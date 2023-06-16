@@ -56,7 +56,7 @@ const PlacesScreen = () => {
         // );
         const data = newData.map((item) =>
           item.properties.sort((a, b) => {
-            return a.newPrice - b.newPrice;
+            return a.avgNewPrice - b.avgNewPrice;
           })
         );
         setNewData(data);
@@ -65,7 +65,7 @@ const PlacesScreen = () => {
         setNewData(
           newData?.map((item) =>
             item.properties?.sort((a, b) => {
-              return b.newPrice - a.newPrice;
+              return b.avgNewPrice - a.avgNewPrice;
             })
           )
         );

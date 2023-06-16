@@ -8,7 +8,11 @@ const RoomScreen = () => {
   const route = useRoute();
   const [selected, setSelected] = useState([]);
   const handleSelect = (name) => {
-    setSelected(name);
+    !selected.some((item) => item.name === name) &&
+      setSelected([...selected, name]);
+  };
+  const handleSetSelect = (value) => {
+    setSelected(value);
   };
   const services = [
     {
@@ -69,12 +73,20 @@ const RoomScreen = () => {
               services={services}
               selected={selected}
               handleSelect={handleSelect}
+              handleSetSelect={handleSetSelect}
             />
           ))}
         </View>
       </ScrollView>
       {selected.length > 0 && (
-        <Pressable style={styles.room__btn}>
+        <Pressable
+          style={styles.room__btn}
+          onPress={() =>
+            navigation.navigate('Contact', {
+              selected: selected,
+              property: route.params?.property,
+            })
+          }>
           <Text style={styles.room__btn_text}>Reserve</Text>
         </Pressable>
       )}
