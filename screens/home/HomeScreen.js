@@ -19,7 +19,7 @@ import {
   ModalFooter,
   ModalTitle,
 } from 'react-native-modals';
-import Header from '../components/Header';
+import Header from '../../components/Header';
 
 const HomeScreen = () => {
   const navigation = useNavigation();

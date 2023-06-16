@@ -1,18 +1,18 @@
-import React from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { AntDesign, Entypo, Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import { AntDesign, Ionicons, Entypo } from '@expo/vector-icons';
-import { StyleSheet, Text, View } from 'react-native';
-import BookingScreen from './screens/BookingScreen';
-import HomeScreen from './screens/HomeScreen';
-import SavedScreen from './screens/SavedScreen';
-import ProfileScreen from './screens/ProfileScreen';
-import SearchScreen from './screens/destinations/SearchScreen';
-import PlacesScreen from './screens/PlacesScreen';
-import MapScreen from './screens/MapScreen';
-import PlaceDetailScreen from './screens/PlaceDetailScreen';
-import RoomScreen from './screens/RoomScreen';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React from 'react';
+import { StyleSheet } from 'react-native';
+import BookingScreen from './screens/booking/BookingScreen';
+import HomeScreen from './screens/home/HomeScreen';
+import PlaceDetailScreen from './screens/popular-places/PlaceDetailScreen';
+import PlacesScreen from './screens/popular-places/PlacesScreen';
+import MapScreen from './screens/popular-places/MapScreen';
+import SearchScreen from './screens/home/SearchScreen';
+import ProfileScreen from './screens/profile/ProfileScreen';
+import RoomScreen from './screens/room/RoomScreen';
+import SavedScreen from './screens/saved/SavedScreen';
 
 const StackNavigator = () => {
   const Tab = createBottomTabNavigator();

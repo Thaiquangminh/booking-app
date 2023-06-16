@@ -1,7 +1,7 @@
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import React, { useLayoutEffect, useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import RoomCard from '../components/RoomCard';
+import RoomCard from '../../components/RoomCard';
 
 const RoomScreen = () => {
   const navigation = useNavigation();
@@ -64,6 +64,7 @@ const RoomScreen = () => {
         <View>
           {route.params.property.rooms.map((room) => (
             <RoomCard
+              key={room.id}
               room={room}
               services={services}
               selected={selected}

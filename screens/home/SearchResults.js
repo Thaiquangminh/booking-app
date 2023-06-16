@@ -1,14 +1,13 @@
+import { useNavigation } from '@react-navigation/native';
+import React, { useEffect, useState } from 'react';
 import {
-  View,
-  Text,
-  Image,
   FlatList,
+  Image,
   Pressable,
   StyleSheet,
+  Text,
+  View,
 } from 'react-native';
-import React, { useEffect, useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
-import useDebounceCustom from '../../ultis/useDebounce';
 
 const SearchResults = ({ data, searchValue }) => {
   const navigation = useNavigation();
