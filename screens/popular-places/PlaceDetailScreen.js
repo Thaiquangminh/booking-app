@@ -2,7 +2,6 @@ import { FontAwesome } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import React, { useLayoutEffect } from 'react';
 import {
-  Button,
   Image,
   Pressable,
   ScrollView,
@@ -10,7 +9,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import calculateDiscount from '../ultis/calculateDiscount';
+import calculateDiscount from '../../ultis/calculateDiscount';
 
 const PlaceDetailScreen = () => {
   const navigation = useNavigation();
