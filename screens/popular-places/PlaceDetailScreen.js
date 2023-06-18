@@ -9,42 +9,13 @@ import {
   Text,
   View,
 } from 'react-native';
+import { services } from '../../data/data';
 import calculateDiscount from '../../ultis/calculateDiscount';
 
 const PlaceDetailScreen = () => {
   const navigation = useNavigation();
   const route = useRoute();
   const property = route.params?.property;
-  const services = [
-    {
-      id: '0',
-      name: 'Room Service',
-    },
-    {
-      id: '2',
-      name: 'Free Wifi',
-    },
-    {
-      id: '3',
-      name: 'Family Rooms',
-    },
-    {
-      id: '4',
-      name: 'Free Parking',
-    },
-    {
-      id: '5',
-      name: 'Swimming Pool',
-    },
-    {
-      id: '6',
-      name: 'Restaurant',
-    },
-    {
-      id: '7',
-      name: 'Fitness Center',
-    },
-  ];
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -191,6 +162,10 @@ const PlaceDetailScreen = () => {
         onPress={() =>
           navigation.navigate('Room', {
             property: property,
+            selectedDates: route.params?.selectedDates,
+            rooms: route.params?.rooms,
+            adults: route.params?.adults,
+            children: route.params?.children,
           })
         }>
         <Text style={styles.detail__btn_text}>Select Availability</Text>

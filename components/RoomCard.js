@@ -12,8 +12,8 @@ const RoomCard = ({
 }) => {
   const route = useRoute();
   const handleRemoveSelected = () => {
-    selected.some((item) => item === room.name) &&
-      handleSetSelect(selected.filter((item) => item !== room.name));
+    selected.some((item) => item.name === room.name) &&
+      handleSetSelect(selected.filter((item) => item.name !== room.name));
   };
   return (
     <Pressable style={{ margin: 8, backgroundColor: 'white', padding: 10 }}>
@@ -43,7 +43,7 @@ const RoomCard = ({
           ))}
         </View>
       </View>
-      {selected.includes(room.name) ? (
+      {selected.some((item) => item.name === room.name) ? (
         <Pressable
           style={{
             padding: 10,
@@ -76,7 +76,7 @@ const RoomCard = ({
             borderRadius: 10,
             marginTop: 10,
           }}
-          onPress={() => handleSelect(room.name)}>
+          onPress={() => handleSelect(room)}>
           <Text
             style={{
               textAlign: 'center',
