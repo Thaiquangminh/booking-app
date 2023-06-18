@@ -570,3 +570,34 @@ export const data = [
     ],
   },
 ];
+
+export const services = [
+  {
+    id: '0',
+    name: 'Room Service',
+  },
+  {
+    id: '2',
+    name: 'Free Wifi',
+  },
+  {
+    id: '3',
+    name: 'Family Rooms',
+  },
+  {
+    id: '4',
+    name: 'Free Parking',
+  },
+  {
+    id: '5',
+    name: 'Swimming Pool',
+  },
+  {
+    id: '6',
+    name: 'Restaurant',
+  },
+  {
+    id: '7',
+    name: 'Fitness Center',
+  },
+];

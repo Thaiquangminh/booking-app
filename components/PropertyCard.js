@@ -10,23 +10,26 @@ import React from 'react';
 import { MaterialIcons, FontAwesome } from '@expo/vector-icons';
 import shortenText from '../ultis/shortenText';
 import { useNavigation } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
+import { addNameHotel } from '../redux/bookedHotel/bookedSlice';
 
 const PropertyCard = ({ property, adults, rooms, selectedDates, children }) => {
   const navigation = useNavigation();
   const { width, height } = Dimensions.get('window');
+  const dispatch = useDispatch();
+  const handlePressHotel = () => {
+    dispatch(addNameHotel(property.name));
+    navigation.navigate('PlaceDetail', {
+      property: property,
+      adults: adults,
+      rooms: rooms,
+      children: children,
+      selectedDates: selectedDates,
+    });
+  };
   return (
     <View style={{ backgroundColor: '#d3d3d3' }}>
-      <Pressable
-        style={styles.detail}
-        onPress={() =>
-          navigation.navigate('PlaceDetail', {
-            property: property,
-            adults: adults,
-            rooms: rooms,
-            children: children,
-            selectedDates: selectedDates,
-          })
-        }>
+      <Pressable style={styles.detail} onPress={handlePressHotel}>
         {/* ----------- IMG ----------- */}
         <View>
           <Image

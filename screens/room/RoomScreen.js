@@ -2,49 +2,22 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import React, { useLayoutEffect, useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import RoomCard from '../../components/RoomCard';
+import { useSelector } from 'react-redux';
+import { services } from '../../data/data';
 
 const RoomScreen = () => {
   const navigation = useNavigation();
   const route = useRoute();
   const [selected, setSelected] = useState([]);
-  const handleSelect = (name) => {
-    !selected.some((item) => item.name === name) &&
-      setSelected([...selected, name]);
+  const handleSelect = (room) => {
+    !selected.some((item) => item.name === room.name) &&
+      setSelected([...selected, room]);
   };
   const handleSetSelect = (value) => {
     setSelected(value);
   };
-  const services = [
-    {
-      id: '0',
-      name: 'Room Service',
-    },
-    {
-      id: '2',
-      name: 'Free Wifi',
-    },
-    {
-      id: '3',
-      name: 'Family Rooms',
-    },
-    {
-      id: '4',
-      name: 'Free Parking',
-    },
-    {
-      id: '5',
-      name: 'Swimming Pool',
-    },
-    {
-      id: '6',
-      name: 'Restaurant',
-    },
-    {
-      id: '7',
-      name: 'Fitness Center',
-    },
-  ];
 
+  const nameHotel = useSelector((state) => state.booking.nameHotel);
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: true,
@@ -85,6 +58,10 @@ const RoomScreen = () => {
             navigation.navigate('Contact', {
               selected: selected,
               property: route.params?.property,
+              selectedDates: route.params?.selectedDates,
+              rooms: route.params?.rooms,
+              adults: route.params?.adults,
+              children: route.params?.children,
             })
           }>
           <Text style={styles.room__btn_text}>Reserve</Text>
