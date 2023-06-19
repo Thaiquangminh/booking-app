@@ -10,7 +10,7 @@ export const bookedSlide = createSlice({
   initialState: initialState,
   reducers: {
     addHotel: (state, action) => {
-      state.bookedHotel.push(action.payload);
+      state.bookedHotel.unshift(action.payload);
     },
     addNameHotel: (state, action) => {
       state.nameHotel = action.payload;

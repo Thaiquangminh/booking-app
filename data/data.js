@@ -361,6 +361,8 @@ export const data = [
             refundable: 'refundable',
             payment: 'Pay at the property',
             bed: '1 queen bed',
+            oldPrice: 80,
+            newPrice: 40,
           },
           {
             id: '203',
@@ -369,6 +371,8 @@ export const data = [
             refundable: 'non refundable',
             payment: 'Pay in advance',
             bed: '1 queen bed',
+            oldPrice: 80,
+            newPrice: 40,
           },
           {
             id: '205',
@@ -377,6 +381,8 @@ export const data = [
             refundable: 'refundable',
             payment: 'Pay at the property',
             bed: '1 queen bed',
+            oldPrice: 80,
+            newPrice: 40,
           },
         ],
       },
