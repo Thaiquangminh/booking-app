@@ -9,6 +9,7 @@ import {
   Text,
   View,
 } from 'react-native';
+import Divider from '../../components/Divider';
 import { services } from '../../data/data';
 import calculateDiscount from '../../ultis/calculateDiscount';
 
@@ -67,18 +68,9 @@ const PlaceDetailScreen = () => {
           </View>
         </View>
 
-        {/* ------------- DIVIDER ----------- */}
-        <Text
-          style={{
-            borderColor: '#E0E0E0',
-            height: 1,
-            borderWidth: 1,
-            marginTop: 18,
-          }}
-        />
-        {/* ------------- DIVIDER ----------- */}
+        <Divider />
 
-        <View style={{ marginTop: 7, marginHorizontal: 10 }}>
+        <View style={{ marginHorizontal: 10 }}>
           <Text style={styles.detail__check_title}>
             Price for 1 night with {route.params?.adults} adults (average price)
           </Text>
@@ -98,17 +90,7 @@ const PlaceDetailScreen = () => {
             </Text>
           </View>
         </View>
-
-        {/* ------------- DIVIDER ----------- */}
-        <Text
-          style={{
-            borderColor: '#E0E0E0',
-            height: 1,
-            borderWidth: 1,
-            marginTop: 15,
-          }}
-        />
-        {/* ------------- DIVIDER ----------- */}
+        <Divider />
 
         <View style={styles.detail__check}>
           <View>
@@ -131,16 +113,7 @@ const PlaceDetailScreen = () => {
             {route.params?.children} children
           </Text>
         </View>
-        {/* ------------- DIVIDER ----------- */}
-        <Text
-          style={{
-            borderColor: '#E0E0E0',
-            height: 1,
-            borderWidth: 1,
-            marginTop: 15,
-          }}
-        />
-        {/* ------------- DIVIDER ----------- */}
+        <Divider />
 
         <View style={styles.detail__facilities}>
           <Text style={styles.detail__check_title}>
@@ -255,7 +228,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 80,
     marginHorizontal: 10,
-    marginVertical: 8,
+    marginBottom: 8,
   },
   detail__check_title: {
     fontSize: 16,
@@ -275,7 +248,7 @@ const styles = StyleSheet.create({
   // ------------ FACILITIES --------------
   detail__facilities: {
     marginHorizontal: 12,
-    marginVertical: 7,
+    marginBottom: 7,
   },
   detail__facilities_item: {
     paddingVertical: 4,
@@ -294,8 +267,8 @@ const styles = StyleSheet.create({
 
   detail__btn: {
     backgroundColor: '#6CB4EE',
-    marginTop: 30,
     paddingVertical: 20,
+    marginTop: 15,
   },
   detail__btn_text: {
     textAlign: 'center',

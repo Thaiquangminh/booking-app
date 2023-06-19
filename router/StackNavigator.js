@@ -12,7 +12,7 @@ import MapScreen from '../screens/popular-places/MapScreen';
 import SearchScreen from '../screens/home/SearchScreen';
 import ProfileScreen from '../screens/profile/ProfileScreen';
 import RoomScreen from '../screens/room/RoomScreen';
-import SavedScreen from '../screens/saved/SavedScreen';
+import SavedScreen from '../screens/favorite/FavoriteScreen';
 import ContactScreen from '../screens/contact/ContactScreen';
 
 const StackNavigator = () => {
@@ -55,7 +55,7 @@ const StackNavigator = () => {
         />
 
         <Tab.Screen
-          name="Saved"
+          name="Favorite"
           component={SavedScreen}
           options={{
             headerShown: false,
@@ -86,7 +86,7 @@ const StackNavigator = () => {
   };
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName="Profile">
         <Stack.Screen
           name="Main"
           component={BottomTabs}

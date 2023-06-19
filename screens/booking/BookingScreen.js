@@ -11,7 +11,7 @@ const ConfirmationScreen = () => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: true,
-      title: 'Confirmation',
+      title: 'Booking',
       headerTitleStyle: {
         fontSize: 20,
         fontWeight: 'bold',
@@ -26,7 +26,6 @@ const ConfirmationScreen = () => {
     });
   }, []);
 
-  console.log(bookedHotel.map((item) => item.selectedRooms));
   return (
     <ScrollView>
       <View>

@@ -1,7 +1,15 @@
 import { useNavigation, useRoute } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import {
+  Alert,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import Divider from '../../components/Divider';
 import { addHotel } from '../../redux/bookedHotel/bookedSlice';
 
 const ContactScreen = () => {
@@ -9,9 +17,11 @@ const ContactScreen = () => {
   const route = useRoute();
   const dispatch = useDispatch();
   const [totalPrice, setTotalPrice] = useState(null);
+  const [savedPrice, setSavedPrice] = useState(null);
+  const [validForm, setValidForm] = useState(false);
   const nameHotel = useSelector((state) => state.booking.nameHotel);
-  const bookedHotels = useSelector((state) => state.booking.bookedHotel);
-  const [infomation, setInfomation] = useState({
+
+  const [information, setInformation] = useState({
     firstname: '',
     lastname: '',
     email: '',
@@ -19,33 +29,56 @@ const ContactScreen = () => {
   });
   const [selectedRooms, setselectedRooms] = useState(route.params.selected);
 
+  const handleCheckValidate = () => {
+    if (
+      information.firstname === '' ||
+      information.lastname === '' ||
+      information.email === '' ||
+      information.phone === ''
+    ) {
+      setValidForm(false);
+      Alert.alert('Invalid information', 'Please fill the form correctly', [
+        { text: 'OK', onPress: () => console.log('OK Pressed') },
+      ]);
+    } else {
+      setValidForm(true);
+    }
+  };
   const handleSaveBookingHotel = () => {
-    dispatch(
-      addHotel({
-        nameHotel: nameHotel,
-        selectedDates: route.params?.selectedDates,
-        selectedRooms: route.params.selected,
-        rooms: route.params?.rooms,
-        adults: route.params?.adults,
-        children: route.params?.children,
-      })
-    );
-    navigation.navigate('Booking', {
-      property: route.params.property,
-      selectedDates: route.params?.selectedDates,
-      rooms: route.params?.rooms,
-      adults: route.params?.adults,
-      children: route.params?.children,
-    });
+    handleCheckValidate();
+    validForm &&
+      dispatch(
+        addHotel({
+          nameHotel: nameHotel,
+          selectedDates: route.params?.selectedDates,
+          selectedRooms: route.params.selected,
+          rooms: route.params?.rooms,
+          adults: route.params?.adults,
+          children: route.params?.children,
+        })
+      );
+
+    validForm &&
+      navigation.navigate('Booking', {
+        property: route.params.property,
+      });
   };
   useEffect(() => {
     const rooms = route.params?.property.rooms.filter((room) =>
       selectedRooms.includes(room.name)
     );
     setselectedRooms(rooms);
-    selectedRooms.map((room) => {
-      setTotalPrice(123);
-    });
+    const totalPrice = selectedRooms.reduce((acc, cur) => {
+      acc = acc + Number(cur.oldPrice);
+      return acc;
+    }, 0);
+    const newPrice = selectedRooms.reduce(
+      (acc, cur) => acc + Number(cur.newPrice),
+      0
+    );
+
+    setTotalPrice(totalPrice);
+    setSavedPrice(totalPrice - newPrice);
   }, []);
 
   useEffect(() => {
@@ -75,7 +108,7 @@ const ContactScreen = () => {
             <TextInput
               style={styles.contact__group_input}
               onChangeText={(text) =>
-                setInfomation({ ...infomation, firstname: text })
+                setInformation({ ...information, firstname: text })
               }
             />
           </View>
@@ -84,7 +117,7 @@ const ContactScreen = () => {
             <TextInput
               style={styles.contact__group_input}
               onChangeText={(text) =>
-                setInfomation({ ...infomation, lastname: text })
+                setInformation({ ...information, lastname: text })
               }
             />
           </View>
@@ -93,7 +126,7 @@ const ContactScreen = () => {
             <TextInput
               style={styles.contact__group_input}
               onChangeText={(text) =>
-                setInfomation({ ...infomation, email: text })
+                setInformation({ ...information, email: text })
               }
             />
           </View>
@@ -102,7 +135,7 @@ const ContactScreen = () => {
             <TextInput
               style={styles.contact__group_input}
               onChangeText={(text) =>
-                setInfomation({ ...infomation, phone: text })
+                setInformation({ ...information, phone: text })
               }
             />
           </View>
@@ -110,29 +143,20 @@ const ContactScreen = () => {
 
         {/* ------------- PRICE AND BTN ---------------- */}
         <Pressable>
-          {/* ------------- DIVIDER ----------- */}
-          <Text
-            style={{
-              borderColor: '#E0E0E0',
-              height: 1,
-              borderWidth: 1,
-              marginTop: 18,
-              marginBottom: 20,
-            }}
-          />
+          <Divider />
           <View style={styles.payment}>
             <View style={styles.payment__price}>
               <Text style={styles.payment__price_total}>
-                Total Price: {totalPrice}
+                Total Price: {totalPrice} ($/h)
               </Text>
-              <Text style={styles.payment__price_saved}>You saved: </Text>
+              <Text style={styles.payment__price_saved}>
+                You saved: {savedPrice} ($/h)
+              </Text>
             </View>
-            <Pressable style={styles.payment__button}>
-              <Text
-                style={styles.payment__button_text}
-                onPress={handleSaveBookingHotel}>
-                Final Step
-              </Text>
+            <Pressable
+              style={styles.payment__button}
+              onPress={handleSaveBookingHotel}>
+              <Text style={styles.payment__button_text}>Confirm Booking</Text>
             </Pressable>
           </View>
         </Pressable>

@@ -17,7 +17,6 @@ const RoomScreen = () => {
     setSelected(value);
   };
 
-  const nameHotel = useSelector((state) => state.booking.nameHotel);
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: true,

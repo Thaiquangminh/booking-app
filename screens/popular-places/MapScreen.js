@@ -1,10 +1,12 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import React, { useRef } from 'react';
-import { useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { MaterialIcons } from '@expo/vector-icons';
 
 const MapScreen = () => {
   const mapView = useRef(null);
+  const navigation = useNavigation();
   const route = useRoute();
   const hotels = route.params?.hotels;
   return (
@@ -23,6 +25,16 @@ const MapScreen = () => {
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}>
+        <TouchableOpacity>
+          <MaterialIcons
+            style={styles.map__backbtn}
+            onPress={() => navigation.goBack()}
+            name="arrow-back-ios"
+            size={24}
+            color="black"
+          />
+        </TouchableOpacity>
+
         {hotels.map((item) =>
           item.properties.map((property) => (
             <Marker
@@ -43,4 +55,13 @@ const MapScreen = () => {
 
 export default MapScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  map__backbtn: {
+    marginTop: 60,
+    marginLeft: 20,
+    padding: 10,
+    backgroundColor: 'transparent',
+    maxWidth: 40,
+    textAlign: 'center',
+  },
+});
