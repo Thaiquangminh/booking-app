@@ -8,23 +8,31 @@ import {
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 const Header = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.header}>
       <Pressable style={[styles.header__group, styles.header__group_active]}>
         <Ionicons name="bed-outline" size={24} color="white" />
         <Text style={styles.header__group_text}>Stays</Text>
       </Pressable>
-      <Pressable style={styles.header__group}>
+      <Pressable
+        style={styles.header__group}
+        onPress={() => navigation.navigate('Coming')}>
         <Ionicons name="airplane-outline" size={24} color="white" />
         <Text style={styles.header__group_text}>Flights</Text>
       </Pressable>
-      <Pressable style={styles.header__group}>
+      <Pressable
+        style={styles.header__group}
+        onPress={() => navigation.navigate('Coming')}>
         <Ionicons name="car-outline" size={24} color="white" />
         <Text style={styles.header__group_text}>Car Rental</Text>
       </Pressable>
-      <Pressable style={styles.header__group}>
+      <Pressable
+        style={styles.header__group}
+        onPress={() => navigation.navigate('Coming')}>
         <FontAwesome5 name="uber" size={24} color="white" />
         <Text style={styles.header__group_text}>Taxi</Text>
       </Pressable>

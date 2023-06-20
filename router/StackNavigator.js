@@ -14,6 +14,7 @@ import ProfileScreen from '../screens/profile/ProfileScreen';
 import RoomScreen from '../screens/room/RoomScreen';
 import SavedScreen from '../screens/favorite/FavoriteScreen';
 import ContactScreen from '../screens/contact/ContactScreen';
+import ComingSoon from '../screens/coming-soon/ComingSoon';
 
 const StackNavigator = () => {
   const Tab = createBottomTabNavigator();
@@ -130,6 +131,13 @@ const StackNavigator = () => {
         <Stack.Screen
           name="Contact"
           component={ContactScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Coming"
+          component={ComingSoon}
           options={{
             headerShown: false,
           }}
