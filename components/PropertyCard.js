@@ -10,13 +10,18 @@ import React from 'react';
 import { MaterialIcons, FontAwesome } from '@expo/vector-icons';
 import shortenText from '../ultis/shortenText';
 import { useNavigation } from '@react-navigation/native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addNameHotel } from '../redux/bookedHotel/bookedSlice';
+import {
+  addFavoriteHotel,
+  removeFavoriteHotel,
+} from '../redux/favoriteHotel/favoriteSlice';
 
 const PropertyCard = ({ property, adults, rooms, selectedDates, children }) => {
   const navigation = useNavigation();
   const { width, height } = Dimensions.get('window');
   const dispatch = useDispatch();
+  const favoriteHotels = useSelector((state) => state.favorite.favoriteHotels);
   const handlePressHotel = () => {
     dispatch(addNameHotel(property.name));
     navigation.navigate('PlaceDetail', {
@@ -26,6 +31,13 @@ const PropertyCard = ({ property, adults, rooms, selectedDates, children }) => {
       children: children,
       selectedDates: selectedDates,
     });
+  };
+  const handleAddFavorite = (property) => {
+    dispatch(addFavoriteHotel(property));
+  };
+
+  const handleRemoveFavorite = (property) => {
+    dispatch(removeFavoriteHotel(property.id));
   };
   return (
     <View style={{ backgroundColor: '#d3d3d3' }}>
@@ -42,9 +54,24 @@ const PropertyCard = ({ property, adults, rooms, selectedDates, children }) => {
         <View style={{ paddingHorizontal: 10, marginTop: 1 }}>
           <View style={styles.detail__title}>
             <Text style={styles.detail__title_text}>{property.name}</Text>
-            <MaterialIcons name="favorite-outline" size={24} color="red" />
+            {favoriteHotels.some((hotel) => hotel.id === property.id) ? (
+              <MaterialIcons
+                onPress={() => handleRemoveFavorite(property)}
+                name="favorite"
+                size={24}
+                color="red"
+              />
+            ) : (
+              <MaterialIcons
+                onPress={() => handleAddFavorite(property)}
+                name="favorite-outline"
+                size={24}
+                color="red"
+              />
+            )}
           </View>
           <View style={styles.detail__rating}>
+            ç
             <FontAwesome name="star" size={18} color="#fdd128" />
             <Text style={styles.detail__rating_text}>{property.rating}</Text>
             <View style={styles.detail__rating_wraptype}>

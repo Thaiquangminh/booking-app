@@ -1,11 +1,19 @@
 import { useNavigation, useRoute } from '@react-navigation/native';
 import React, { useLayoutEffect } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import {
+  Dimensions,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import { useSelector } from 'react-redux';
 
 const ConfirmationScreen = () => {
   const route = useRoute();
   const navigation = useNavigation();
+  const { height } = Dimensions.get('window');
   const bookedHotel = useSelector((state) => state.booking.bookedHotel);
 
   useLayoutEffect(() => {
@@ -92,7 +100,17 @@ const ConfirmationScreen = () => {
             ))
           )
         ) : (
-          <Text>You havent booked any hotel !!!</Text>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: (4 * height) / 5,
+            }}>
+            <Text style={{ fontSize: 20, fontWeight: '600' }}>
+              You havent booked any hotel !!!
+            </Text>
+          </View>
         )}
       </View>
     </ScrollView>

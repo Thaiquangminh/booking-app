@@ -2,6 +2,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import React, { useLayoutEffect } from 'react';
 import {
+  Dimensions,
   Image,
   Pressable,
   ScrollView,
@@ -15,6 +16,7 @@ import calculateDiscount from '../../ultis/calculateDiscount';
 
 const PlaceDetailScreen = () => {
   const navigation = useNavigation();
+  const { width, height } = Dimensions.get('window');
   const route = useRoute();
   const property = route.params?.property;
 
@@ -41,7 +43,12 @@ const PlaceDetailScreen = () => {
         <Pressable style={styles.detail__wrapimage}>
           {property.photos.slice(0, 5).map((photo) => (
             <Image
-              style={styles.detail__image}
+              style={{
+                width: width / 3.3,
+                height: height / 9,
+                margin: 4,
+                borderRadius: 5,
+              }}
               key={photo.id}
               source={{ uri: photo.image }}></Image>
           ))}
@@ -129,20 +136,20 @@ const PlaceDetailScreen = () => {
             ))}
           </View>
         </View>
+        <Pressable
+          style={styles.detail__btn}
+          onPress={() =>
+            navigation.navigate('Room', {
+              property: property,
+              selectedDates: route.params?.selectedDates,
+              rooms: route.params?.rooms,
+              adults: route.params?.adults,
+              children: route.params?.children,
+            })
+          }>
+          <Text style={styles.detail__btn_text}>Select Availability</Text>
+        </Pressable>
       </ScrollView>
-      <Pressable
-        style={styles.detail__btn}
-        onPress={() =>
-          navigation.navigate('Room', {
-            property: property,
-            selectedDates: route.params?.selectedDates,
-            rooms: route.params?.rooms,
-            adults: route.params?.adults,
-            children: route.params?.children,
-          })
-        }>
-        <Text style={styles.detail__btn_text}>Select Availability</Text>
-      </Pressable>
     </View>
   );
 };
@@ -153,12 +160,6 @@ const styles = StyleSheet.create({
   detail__wrapimage: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-  },
-  detail__image: {
-    width: 120,
-    height: 80,
-    borderRadius: 4,
-    margin: 8,
   },
   detail__more: {
     alignItems: 'center',
@@ -268,7 +269,6 @@ const styles = StyleSheet.create({
   detail__btn: {
     backgroundColor: '#6CB4EE',
     paddingVertical: 20,
-    marginTop: 15,
   },
   detail__btn_text: {
     textAlign: 'center',

@@ -12,7 +12,9 @@ export const favoriteSlice = createSlice({
       state.favoriteHotels.unshift(action.payload);
     },
     removeFavoriteHotel: (state, action) => {
-      state.favoriteHotels.filter((hotel) => hotel.id !== action.payload);
+      state.favoriteHotels = state.favoriteHotels.filter(
+        (hotel) => hotel.id !== action.payload
+      );
     },
   },
 });
